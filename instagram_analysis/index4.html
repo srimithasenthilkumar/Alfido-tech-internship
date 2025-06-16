@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Instagram Data Analysis Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-gray-100 font-sans leading-normal tracking-normal">
+
+  <!-- Navbar -->
+  <nav class="bg-white shadow mb-4">
+    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+      <h1 class="text-xl font-bold text-gray-800">📊 Instagram Analysis</h1>
+      <div>
+        <button class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Export</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="container mx-auto px-4">
+    <!-- Section 1: Summary -->
+    <section class="mb-6">
+      <h2 class="text-2xl font-semibold mb-2">Account Overview</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-white p-4 rounded shadow">
+          <p class="text-gray-600">Followers</p>
+          <p class="text-2xl font-bold text-blue-600">12,340</p>
+        </div>
+        <div class="bg-white p-4 rounded shadow">
+          <p class="text-gray-600">Posts</p>
+          <p class="text-2xl font-bold text-green-600">578</p>
+        </div>
+        <div class="bg-white p-4 rounded shadow">
+          <p class="text-gray-600">Engagement Rate</p>
+          <p class="text-2xl font-bold text-purple-600">4.3%</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2: Chart -->
+    <section class="mb-6">
+      <h2 class="text-2xl font-semibold mb-2">Followers Growth</h2>
+      <div class="bg-white p-4 rounded shadow">
+        <canvas id="followersChart" height="100"></canvas>
+      </div>
+    </section>
+
+    <!-- Section 3: Table -->
+    <section class="mb-6">
+      <h2 class="text-2xl font-semibold mb-2">Top Performing Posts</h2>
+      <div class="overflow-x-auto">
+        <table class="min-w-full bg-white shadow rounded">
+          <thead>
+            <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
+              <th class="py-3 px-6 text-left">Post</th>
+              <th class="py-3 px-6 text-left">Likes</th>
+              <th class="py-3 px-6 text-left">Comments</th>
+              <th class="py-3 px-6 text-left">Engagement</th>
+            </tr>
+          </thead>
+          <tbody class="text-gray-600 text-sm font-light">
+            <tr class="border-b border-gray-200 hover:bg-gray-100">
+              <td class="py-3 px-6">📸 Beach Sunset</td>
+              <td class="py-3 px-6">1,230</td>
+              <td class="py-3 px-6">98</td>
+              <td class="py-3 px-6">8.9%</td>
+            </tr>
+            <tr class="border-b border-gray-200 hover:bg-gray-100">
+              <td class="py-3 px-6">🏞️ Mountain Hike</td>
+              <td class="py-3 px-6">1,150</td>
+              <td class="py-3 px-6">65</td>
+              <td class="py-3 px-6">7.6%</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+
+  <!-- Chart JS Script -->
+  <script>
+    const ctx = document.getElementById('followersChart').getContext('2d');
+    const followersChart = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+        datasets: [{
+          label: 'Followers',
+          data: [8000, 8500, 9000, 9800, 11000, 12340],
+          borderColor: 'rgba(59, 130, 246, 1)',
+          backgroundColor: 'rgba(59, 130, 246, 0.1)',
+          tension: 0.4,
+          fill: true,
+          pointRadius: 4
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: {
+            beginAtZero: false
+          }
+        }
+      }
+    });
+  </script>
+</body>
+</html>
